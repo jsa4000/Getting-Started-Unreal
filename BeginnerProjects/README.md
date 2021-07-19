@@ -1,6 +1,6 @@
 # Beginner Projects
 
-These examples teach the fuoundamentas and some tips how to create and develop a Game using Unreal Engine 4.x, 5.x.
+These examples teach the fundamental and some tips on how to create and develop games using Unreal Engine
 
 ## 1. Nomenclature
 
@@ -426,15 +426,45 @@ This section describes how you should author functions, events, and event dispat
 
 First we need to crate an empty or base project from a template.
 
-> Do not select `C++` option. Select `Blueprint` optiono instead, so we can add source code later.
+> Do not select `C++` option. Select `Blueprint` option instead, so we can add source code later.
 
-![](images/unreal-create-project.png)
+![unreal-create-project](images/unreal-create-project.png)
 
-Select the code editor or IDE, depending on workflows, requirements, licenses or speed in development. `Editor Preferencies -> General -> Source Code`
+Select the code editor or IDE, depending on workflows, requirements, licenses or speed in development.
 
-![](images/vscode-ide-config.png)
+`Editor Preferences -> General -> Source Code -> Accessor -> Source Code Editor`
+
+![vscode-ide-config](images/vscode-ide-config.png)
+
+Select the default location for the Asset Editor. 
+
+`Editor Preferences -> General -> Appearance -> User Interface -> Asset Editor Open Location -> Main Window`
+
+![unreal-asset-editor-location](images/unreal-asset-editor-location.png)
+
+Disable `Lumen` rendering method to increase performances within the editor in `Project Settings`.
+
+> Search for `global` and `reflection` to disable the `lumen` features more quicly
+
+`Project Settings -> Engine -> Rendering -> Global Illumination -> Dynamic Global Illumination Method -> None`
+
+![unreal-rendering-gi-method](images/unreal-rendering-gi-method.png)
+
+`Project Settings -> Engine -> Rendering -> Reflections -> Reflection Method -> None`
+
+![unreal-rendering-reflection-method](images/unreal-rendering-reflection-method.png)
+
+Disable `Virtual Shadow Maps (Beta)` method to increase performances within the editor in `Project Settings`.
+
+> Search for `shadow` to disable `Virtual Shadow Maps (Beta)`.
+
+`Edit -> Project Settings -> Rendering -> Shadows -> Shadow Map Method -> Shadow Maps`
+
+![unreal-rendering-shadows-method](images/unreal-rendering-shadows-method.png)
+
+These changes modifies the configuration file at `Config/DefaultEngine.ini`
+
+![unreal-rendering-shadows-method](images/unreal-default-engine-config.png)
 
 ### 2.2. VSCode IED
 
-
-S
