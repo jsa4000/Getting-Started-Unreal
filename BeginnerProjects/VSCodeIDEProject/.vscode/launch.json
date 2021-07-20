@@ -1,0 +1,105 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "VSCodeIDEProject (Debug)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProject Mac Debug Build",
+			"program": "/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/Binaries/Mac/UnrealGame-Mac-Debug.app/Contents/MacOS/UnrealGame-Mac-Debug",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProject (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProject Mac DebugGame Build",
+			"program": "/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/Binaries/Mac/UnrealGame-Mac-DebugGame.app/Contents/MacOS/UnrealGame-Mac-DebugGame",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProject (Development)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProject Mac Development Build",
+			"program": "/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/Binaries/Mac/UnrealGame.app/Contents/MacOS/UnrealGame",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProject (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProject Mac Shipping Build",
+			"program": "/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/Binaries/Mac/UnrealGame-Mac-Shipping.app/Contents/MacOS/UnrealGame-Mac-Shipping",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProject (Test)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProject Mac Test Build",
+			"program": "/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/Binaries/Mac/UnrealGame-Mac-Test.app/Contents/MacOS/UnrealGame-Mac-Test",
+			"args": [
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProjectEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProjectEditor Mac Debug Build",
+			"program": "/Users/Shared/Epic Games/UE_5.0EA/Engine/Binaries/Mac/UnrealEditor-Mac-Debug.app/Contents/MacOS/UnrealEditor-Mac-Debug",
+			"args": [
+				"/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/VSCodeIDEProject.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProjectEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProjectEditor Mac DebugGame Build",
+			"program": "/Users/Shared/Epic Games/UE_5.0EA/Engine/Binaries/Mac/UnrealEditor-Mac-DebugGame.app/Contents/MacOS/UnrealEditor-Mac-DebugGame",
+			"args": [
+				"/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/VSCodeIDEProject.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "VSCodeIDEProjectEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "VSCodeIDEProjectEditor Mac Development Build",
+			"program": "/Users/Shared/Epic Games/UE_5.0EA/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor",
+			"args": [
+				"/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/VSCodeIDEProject.uproject"
+			],
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA",
+			"type": "lldb"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "coreclr",
+			"request": "launch",
+			"program": "/Users/Shared/Epic Games/UE_5.0EA/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=\"/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/VSCodeIDEProject.uproject\"",
+				"-game",
+				"-engine"
+			],
+			"console": "internalConsole",
+			"internalConsoleOptions": "openOnSessionStart",
+			"stopAtEntry": false,
+			"cwd": "/Users/Shared/Epic Games/UE_5.0EA"
+		}
+	]
+}

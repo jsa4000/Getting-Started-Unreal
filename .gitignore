@@ -42,23 +42,23 @@
 *.VC.opendb
 
 # Precompiled Assets
-SourceArt/**/*.png
-SourceArt/**/*.tga
+*/**/SourceArt/**/*.png
+*/**/SourceArt/**/*.tga
 
 # Binary Files
-Binaries/*
-Plugins/*/Binaries/*
+*/**/Binaries/*
+*/**/Plugins/*/Binaries/*
 
 # Builds
-Build/*
+*/**/Build/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
-!Build/*/
-Build/*/**
-!Build/*/PakBlacklist*.txt
+!*/**/Build/*/
+*/**/Build/*/**
+!*/**/Build/*/PakBlacklist*.txt
 
 # Don't ignore icon files in Build
-!Build/**/*.ico
+!**/Build/**/*.ico
 
 # Built data for maps
 *_BuiltData.uasset
@@ -71,10 +71,28 @@ Build/*/**
 */**/Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
-DerivedDataCache/*
+*/**/DerivedDataCache/*
 
 ### OSX ###
 # General
 .DS_Store
 .AppleDouble
 .LSOverride
+
+
+### VisualStudioCode ###
+*/**/.vscode/*
+!*/**/.vscode/settings.json
+!*/**/.vscode/tasks.json
+!*/**/.vscode/launch.json
+!*/**/.vscode/extensions.json
+**/**/.code-workspace
+
+# Local History for Visual Studio Code
+*/**/.history/
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+*/**/.history
+*/**/.ionide
+

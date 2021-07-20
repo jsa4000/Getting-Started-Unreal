@@ -1,12 +1,12 @@
-# Beginner Projects
+# How to Start in Unreal Engine
 
 These examples teach the fundamental and some tips on how to create and develop games using Unreal Engine
 
-## 1. Nomenclature
+## 1. Naming Convention
 
 It is important to follow a naming conventions to use within the projects for folders, files, variables, etc..
 
-[Gamemakin UE4 Style Guide](https://github.com/Allar/ue5-style-guide)
+[Unreal Style Guide](https://github.com/Allar/ue5-style-guide)
 
 ### 1.1 Identifiers
 
@@ -363,7 +363,7 @@ Following is an example of a content structure.
 
 ### 1.4 Blueprints
 
-#### 3.1 Variables
+#### 1.4.1 Variables
 
 The words `variable` and `property` may be used interchangeably.
 
@@ -408,7 +408,7 @@ All of these variables are named redundantly. It is implied that the variable is
 * `Skills`
 * `Skin`
 
-#### 3.2 Functions, Events, and Event Dispatchers
+#### 1.4.2 Functions, Events, and Event Dispatchers
 
 This section describes how you should author functions, events, and event dispatchers. Everything that applies to functions also applies to events, unless otherwise noted.
 
@@ -419,6 +419,35 @@ This section describes how you should author functions, events, and event dispat
 * Remote Procedure Calls Should Be Prefixed With Target, `Server`, `Client`, or `Multicast`. i.e `ServerFireWeapon`,`ClientNotifyDeath` or `MulticastSpawnTracerEffect`
 * All Functions Must Have Return Nodes
 * No Function Should Have More Than 50 Nodes
+
+### 1.5 Classes
+
+Source Code files also must use a naming convention such as Classes, Interfaces, Enums, etc..
+
+[Unreal Coding Standards](https://docs.unrealengine.com/4.26/en-US/ProductionPipelines/DevelopmentSetup/CodingStandard/)
+
+* The first letter of each word in a name (such as type name or variable name) is capitalized, and there is usually no underscore between words. For example, `Health` and `UPrimitiveComponent` are correct, but **not** `lastMouseCoordinates` or `delta_coordinates`.
+* Type names are prefixed with an additional upper-case letter to distinguish them from variable names. For example, `FSkin` is a **type** name, and `Skin` is an **instance** of a `FSkin`.
+  * `Template` classes are prefixed by T.
+  * Classes that inherit from `UObject` are prefixed by U.
+  * Classes that inherit from `AActor` are prefixed by A.
+  * Classes that inherit from `SWidget` are prefixed by S.
+  * Classes that are abstract `interfaces` are prefixed by I.
+  * `Enums` are prefixed by E.
+  * `Boolean` variables must be prefixed by b (for example, bPendingDestruction, or bHasFadedIn).
+  * Most other classes are prefixed by F, though some subsystems use other letters.
+  * `Typedefs` should be prefixed by whatever is appropriate for that type: F if it's a typedef of a `struct`, U if it's a typedef of a UObject and so on.
+
+    A typedef of a particular template instantiation is no longer a template, and should be prefixed accordingly, for example:
+
+    ```c
+    typedef TArray<FMytype> FArrayOfMyTypes;
+    ```
+
+  * Prefixes are omitted in C#.
+  * `UnrealHeaderTool` requires the correct prefixes in most cases, so it's important to provide them.
+* `Type` and `variable` names are nouns.
+* Method names are verbs that describe the method's effect, or describe the return value of a method that has no effect.
 
 ## 2. Create Project
 
@@ -436,11 +465,15 @@ Select the code editor or IDE, depending on workflows, requirements, licenses or
 
 ![vscode-ide-config](images/vscode-ide-config.png)
 
-Select the default location for the Asset Editor. 
+Select the default location for the Asset Editor.
 
 `Editor Preferences -> General -> Appearance -> User Interface -> Asset Editor Open Location -> Main Window`
 
 ![unreal-asset-editor-location](images/unreal-asset-editor-location.png)
+
+Turn Off `Realtime` within from the `Viewport options` menu.
+
+![unreal-disable-realtime](images/unreal-disable-realtime.png)
 
 Disable `Lumen` rendering method to increase performances within the editor in `Project Settings`.
 
@@ -466,5 +499,111 @@ These changes modifies the configuration file at `Config/DefaultEngine.ini`
 
 ![unreal-rendering-shadows-method](images/unreal-default-engine-config.png)
 
-### 2.2. VSCode IED
+#### 2.3 Configure IDE
 
+##### 2.3.1 Visual Studio Code IDE
+
+[Unreal C++ with Visual Studio Code](http://jollymonsterstudio.com/2018/11/02/unreal-c-with-visual-studio-code/)
+
+**Visual Studio Code** is a fairly lean IDE based on the Electron framework that was designed to tap into the market of Sublime, Atom, etc etc but it works just fine as a C++ editor.
+
+There are a few prerequisites you need to have installed to follow this tutorial:
+
+* Ensure that you the following packages installed depending on your OS:
+  * **Windows**: *Visual Studio Community 2017* installed or alternatively just the *Visual Studio Build Tools* as you need something to still compile the code. Visual Studio Code will recognize what you have these packages installed and assign the correct compiler configurations
+  * **MacOS**: XCode 12 installed to compile shaders and c++ code.
+* **Unreal Engine** > v4.20.X
+* **Visual Studio Code**
+
+Once you have these pieces installed, let’s move onto the Unreal Editor configuration
+
+* Open Unreal Editor ( source or binary doesn’t matter )
+* Go to `Edit -> Editor Preferences`
+* Then go to `General -> Source Code -> Source Code Editor` and select `Visual Studio Code`
+* Once this is done you should now be able to:
+  * Create a new C++ Class using `Tools -> New C++ Class...`
+  * Generate a new Visual Studio Code project using `Tools -> Generate Visual Studio Code Project`
+* To open up Visual Studio Code go to `Tools -> Open Visual Studio Code`
+
+![vscode-ide-config](images/vscode-ide-config.png)
+
+This must be generate the following folders and files within the project.
+
+```bash
+.vscode/
+[PROJECTNAME].code-workspace
+```
+
+You should now be able to see the IDE getting launched from Unreal and your project available for compilation.
+
+In case these files are not generated, it can be manually created by running the following command.
+
+```bash
+export BUILD_TOOL_PATH="/Users/Shared/Epic Games/UE_5.0EA/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool"
+export PROJECT_PATH="/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/VSCodeIDEProject/VSCodeIDEProject.uproject"
+$BUILD_TOOL_PATH -projectfiles -project=$PROJECT_PATH -game -Engine -rocket -progress -VSCode
+```
+
+The only other thing you need to be aware of is how to get at the build targets.
+
+To do so you can go to `Terminal` -> `Run` Build Task or simply hit `CTRL + SHIFT + B`
+
+##### Additional Information
+
+The only other thing you may want to setup within Visual Studio Code are a number of plugins that assist with intellisense, auto complete, etc.
+
+Here is a list of plugins I currently have configured:
+
+* C/C++
+* C/C++ Clang Command Adapter
+* C#
+* C++ Intellisense
+* Clang-Format
+* Unreal Engine 4 Snippets
+
+In case you are not happy with Visual Studio Code and want to revert things back to use Visual Studio I recommend cleaning up the files the VS Code integration generated.
+
+Specifically the following folders / files inside of your root project:
+
+```bash
+.vscode/
+[PROJECTNAME].code-workspace
+```
+
+Once this is complete you simply follow the initial set of instructions but instead of picking VS Code just select Visual Studio 2015/2017. This should then give you the option to re-generate the Visual Studio project within Unreal Editor ( File -> Refresh / Generate Visual Studio Project )
+
+##### 2.3.2 Rider for Unreal IDE
+
+#### 2.4 Create Actor Class
+
+Create a new C++ Class using `Tools -> New C++ Class...`
+
+![unreal-create-class-01](images/unreal-create-class-01.png)
+
+Select the Parent Class (inheritance Class). Click on `All Classes` to view the complete list of classes available.
+
+![unreal-create-class-02](images/unreal-create-class-02.png)
+
+Choose a `Name`, following the naming convention depending on the class/file type created. Also select the `Path` folder to use to store the class, depending on the module, behavior and domain specific.
+
+> When creating **modules** it is a good practice to split the header (*.h*) and implementation (*.cpp*) files into `public` and `private` folder structure.
+
+![unreal-create-class-03](images/unreal-create-class-03.png)
+
+Generate a new Visual Studio Code project using `Tools -> Generate Visual Studio Code Project`
+
+To open up Visual Studio Code go to `Tools -> Open Visual Studio Code`
+
+##### FAQ
+
+* **Error** compiling the code after creating the class.
+
+  ```txt
+  ERROR: Expecting to find a type to be declared in a module rules named ‘RD’ in UE5Rules, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null. This type must derive from the ‘ModuleRules’ type defined by Unreal Build Tool.
+  ```
+
+  ![unreal-error-plugin-riderlink](images/unreal-error-plugin-riderlink.png)
+
+  Remove following folder at `/Epic Games/UE_5.0EA/Engine/Plugins/Developer/Riderlink`. This plugin must be installed in the **Game** not globally in the **Engine**.
+
+  ![unreal-remove-plugin-riderlink](images/unreal-remove-plugin-riderlink.png)
