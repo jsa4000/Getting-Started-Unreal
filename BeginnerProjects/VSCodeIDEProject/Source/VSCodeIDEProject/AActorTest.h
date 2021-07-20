@@ -19,8 +19,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	/** the desired intensity for the light */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Switch Variables")
+	float DesiredIntensity = 3000.0f;
+
+	/** the desired intensity for the light */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Switch Variables")
+	float DesiredRadius = 250.0f;
+
+	/** point light component */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Switch Components")
+	class UPointLightComponent* PointLight;
+
+	/** sphere component */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Switch Components")
+	class USphereComponent* Sphere;
 
 };

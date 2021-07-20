@@ -536,6 +536,8 @@ This must be generate the following folders and files within the project.
 
 You should now be able to see the IDE getting launched from Unreal and your project available for compilation.
 
+![unreal-vscode-workspace](images/unreal-vscode-workspace.png)
+
 In case these files are not generated, it can be manually created by running the following command.
 
 ```bash
@@ -547,6 +549,8 @@ $BUILD_TOOL_PATH -projectfiles -project=$PROJECT_PATH -game -Engine -rocket -pro
 The only other thing you need to be aware of is how to get at the build targets.
 
 To do so you can go to `Terminal` -> `Run` Build Task or simply hit `CTRL + SHIFT + B`
+
+![unreal-vscode-tasks](images/unreal-vscode-tasks.png)
 
 ##### Additional Information
 
