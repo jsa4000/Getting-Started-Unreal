@@ -580,6 +580,77 @@ Once this is complete you simply follow the initial set of instructions but inst
 
 ##### 2.3.2 Rider for Unreal IDE
 
+**Rider for Unreal Engine** Preview is now available on Windows and macOS. It also works with the `.uproject` model, which saves you time on generating additional project models. You can get access for free by just registering [here](https://www.jetbrains.com/lp/rider-unreal/)
+
+[Rider for Unreal Engine](https://blog.jetbrains.com/dotnet/2021/05/31/rider-unreal-engine-5/)
+
+There are still a few known issues with Unreal Engine 5:
+
+* Unreal Engine 5 bundles an old version of the `RiderSourceCodeAccess` plugin that doesn’t have support for macOS. In order to be able to select Rider for Unreal Engine as your IDE of choice on that platform, you’ll need to download the latest version from the master branch [here](https://github.com/JetBrains/RiderSourceCodeAccess) and place it into `{GameFolder}/Plugins/Developer/RiderSourceCodeAccess`
+* The `RiderLink` plugin doesn’t work if placed into the **Engine**. It should be placed into the **Game only**.
+* There are some false positive errors in `.build.cs` files when opening `.uproject` on macOS, which we plan to address later.
+
+In order to configure Raider following these steps:
+
+* Create new Unreal Project as explained before
+* Download the `RiderSourceCodeAccess` repository from [github](https://github.com/JetBrains/RiderSourceCodeAccess). Copy the entire folder into `${PROJECT_PATH}/Plugins/Developer/RiderSourceCodeAccess`
+
+  ```bash
+  # CLone RiderSourceCodeAccess repository and checkout the master branch 
+  git clone https://github.com/JetBrains/RiderSourceCodeAccess
+  git -C RiderSourceCodeAccess checkout master && rm -rf RiderSourceCodeAccess/.git
+
+  # Create the plugins directory and copy RiderSourceCodeAccess plugin into 
+  export PROJECT_PATH="/Users/jsantosa/Projects/Unreal/Getting-Started-Unreal/BeginnerProjects/RiderIDEProject"
+  export PLUGINS_PATH="$PROJECT_PATH/Plugins/Developer/"
+  mkdir -p $PLUGINS_PATH && cp -R RiderSourceCodeAccess $PLUGINS_PATH
+  ```
+
+  ```txt
+  ├── README.md
+  ├── Resources
+  │   └── Icon128.png
+  ├── c.uplugin
+  └── Source
+      └── RiderSourceCodeAccess
+          ├── Private
+          │   ├── RiderPathLocator
+          │   │   ├── Common
+          │   │   │   └── RiderPathLocator.cpp
+          │   │   ├── Mac
+          │   │   │   └── RiderPathLocatorMac.cpp
+          │   │   ├── RiderPathLocator.h
+          │   │   └── Win
+          │   │       └── RiderPathLocatorWin.cpp
+          │   ├── RiderSourceCodeAccessor.cpp
+          │   ├── RiderSourceCodeAccessor.h
+          │   ├── RiderSourceCodeAccessorModule.cpp
+          │   └── RiderSourceCodeAccessorModule.h
+          └── RiderSourceCodeAccess.Build.cs
+  ```
+
+* Open Unreal Editor so it can generate the Plugin binaries. It should prompt a windows popup with a `Warning` informing previous some code detected but not compiled yet.
+
+  ![unreal-popup-rider-warning](images/unreal-popup-rider-warning.png)
+s
+  This must generate two new folders inside `/Plugins/Developer/RiderSourceCodeAccess`. These folder are `Intermediate` and `Binaries`, that store compilation and binaries used by the engine.
+
+* Select `Rider Uproject (experimental)` from `Editor Preferences -> General -> Source Code -> Accessor -> Source Code Editor`. This will use the latest Rider`s version, it can be used any of the Rider's version available.
+
+  ![unreal-popup-rider-warning](images/unreal-rider-available-version.png)
+
+* Create a new C++ Class using `Tools -> New C++ Class...`
+
+  > After creating the class `Rider for Unreal Engine` iED should be opened. Wait until itt finish to load all files, indexing, etc...
+s
+* Install `RiderLink` into the Game. As commented above there are still some issues installing the Plugin globally into the Engine.
+
+  > Upgrade to the latest `RiderLink` plugin version, since the compiler will throws errors during the compilation. `Rider -> Preferences -> Plugins`
+
+  ![unreal-riderlink-install-game.](images/unreal-riderlink-install-game.png)
+
+* Press `Build -> Build Solution` to compile
+
 #### 2.4 Create Actor Class
 
 Create a new C++ Class using `Tools -> New C++ Class...`
@@ -622,7 +693,7 @@ public:
   // Sets default values for this actor's properties
   AAActorTest();
   
-  otected:
+  protected:
   // Called when the game starts or when spawned
   virtual void BeginPlay() override;
   
