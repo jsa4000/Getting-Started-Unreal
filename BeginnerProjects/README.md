@@ -548,7 +548,9 @@ $BUILD_TOOL_PATH -projectfiles -project=$PROJECT_PATH -game -Engine -rocket -pro
 
 The only other thing you need to be aware of is how to get at the build targets.
 
-To do so you can go to `Terminal` -> `Run` Build Task or simply hit `CTRL + SHIFT + B`
+To do so you can go to `Terminal` -> `Run Build Task` or simply hit `CTRL + SHIFT + B`
+
+> Select `VSCodeIDEProjectEditor (Development)' to build and generate the libraries
 
 ![unreal-vscode-tasks](images/unreal-vscode-tasks.png)
 
@@ -597,6 +599,95 @@ Choose a `Name`, following the naming convention depending on the class/file typ
 Generate a new Visual Studio Code project using `Tools -> Generate Visual Studio Code Project`
 
 To open up Visual Studio Code go to `Tools -> Open Visual Studio Code`
+
+Open files and add the following code:
+
+*AActorTest.h*
+
+```cpp
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "AActorTest.generated.h"
+
+UCLASS()
+class VSCODEIDEPROJECT_API AAActorTest : public AActor
+{
+  GENERATED_BODY()
+  
+public:
+  // Sets default values for this actor's properties
+  AAActorTest();
+  
+  otected:
+  // Called when the game starts or when spawned
+  virtual void BeginPlay() override;
+  
+  /** the desired intensity for the light */
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Switch Variables")
+  float DesiredIntensity = 3000.0f;
+  
+  /** the desired intensity for the light */
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Switch Variables")
+  float DesiredRadius = 250.0f;
+  
+  /** point light component */
+  UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Switch Components")
+  class UPointLightComponent* PointLight;
+  
+  /** sphere component */
+  UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Switch Components")
+  class USphereComponent* Sphere;
+
+};
+
+```
+
+*AActorTest.cpp*
+
+```cpp
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "AActorTest.h"
+#include "Components/PointLightComponent.h"
+#include "Components/SphereComponent.h"
+
+// Sets default values
+AAActorTest::AAActorTest()
+{
+  // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+  PrimaryActorTick.bCanEverTick = false;
+
+  PointLight = CreateDefaultSubobject<UPointLightComponent>("PointLight");
+  Sphere = CreateDefaultSubobject<USphereComponent>("Sphere");
+
+    PointLight->Intensity = DesiredIntensity;
+    Sphere->InitSphereRadius(DesiredRadius);
+
+  RootComponent = PointLight;
+    Sphere->SetupAttachment(RootComponent);
+}
+
+// Called when the game starts or when spawned
+void AAActorTest::BeginPlay()
+{
+  Super::BeginPlay();
+}
+```
+
+Compile the code using the default IDE or directly from Unreal Engine
+
+Create the Folder structure (i.e `/Content/VSCodeIDEProject/Items/Test/`) for the Content and create a new Blueprint (i.e `BP_AssetName_Suffix`)
+
+![unreal-create-blueprint](images/unreal-create-blueprint.png)
+
+Open the created blueprint to see the content.
+
+![unreal-view-blueprint](images/unreal-view-blueprint.png)
 
 ##### FAQ
 
