@@ -471,6 +471,17 @@ Select the default location for the Asset Editor.
 
 ![unreal-asset-editor-location](images/unreal-asset-editor-location.png)
 
+Disable or set the camera preview window displayed into the viewport
+
+`Editor Preferences -> Level Editor -> Viewport -> Look and Feel -> Preview Selected Cameras`
+`Editor Preferences -> Level Editor -> Viewport -> Look and Feel -> Camera Preview Size`
+
+Configure mouse and buttons to easily navigate into the viewport
+
+`Editor Preferences -> Level Editor -> Viewport -> Controls`
+
+![unreal-viewport-navigation-config.png](images/unreal-viewport-navigation-config.png)
+
 Turn Off `Realtime` within from the `Viewport options` menu.
 
 ![unreal-disable-realtime](images/unreal-disable-realtime.png)
