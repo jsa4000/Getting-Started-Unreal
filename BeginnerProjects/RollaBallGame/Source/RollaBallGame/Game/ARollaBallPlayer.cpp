@@ -7,7 +7,7 @@
 #include "GameFramework/SpringArmComponent.h"
 
 // Sets default values
-AARollaBallPlayer::AARollaBallPlayer()
+ARollaBallPlayer::ARollaBallPlayer()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
@@ -40,33 +40,33 @@ AARollaBallPlayer::AARollaBallPlayer()
 }
 
 // Called when the game starts or when spawned
-void AARollaBallPlayer::BeginPlay()
+void ARollaBallPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 
 	// Dynamic Events must be put in PostInitializeComponents() or BeginPlay()
-	Mesh->OnComponentHit.AddDynamic(this, &AARollaBallPlayer::OnComponentHit);
+	Mesh->OnComponentHit.AddDynamic(this, &ARollaBallPlayer::OnComponentHit);
 
 	// Account for Mass in forces applied to the mesh
 	MoveForce *= Mesh->GetMass();
 	JumpImpulse *= Mesh->GetMass();
 }
 
-void AARollaBallPlayer::MoveRight(const float Value)
+void ARollaBallPlayer::MoveRight(const float Value)
 {
 	// Get the right vector (local)	of the Camera and applied to the Force and Input Value
 	const FVector Right = Camera->GetRightVector() * MoveForce * Value;
 	Mesh->AddForce(Right);
 }
 
-void AARollaBallPlayer::MoveForward(const float Value)
+void ARollaBallPlayer::MoveForward(const float Value)
 {
 	// Get the forward vector (local) of the Camera and applied to the Force and Input Value
 	const FVector Forward = Camera->GetForwardVector() * MoveForce * Value;
 	Mesh->AddForce(Forward);
 }
 
-void AARollaBallPlayer::Jump()
+void ARollaBallPlayer::Jump()
 {
 	// Compare current jump count with the maximum
 	if (JumpCount >= MaxJumpCount) return;
@@ -76,10 +76,10 @@ void AARollaBallPlayer::Jump()
 	JumpCount ++;
 }
 
-void AARollaBallPlayer::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
+void ARollaBallPlayer::OnComponentHit(UPrimitiveComponent* HitComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("AARollaBallPlayer::OnComponentHit has been called"));
+	//UE_LOG(LogTemp, Warning, TEXT("ARollaBallPlayer::OnComponentHit has been called"));
 	//GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,
 	//	FString::Printf(TEXT("Z Normal: %f"),Hit.Normal.Z));
 	
@@ -92,14 +92,14 @@ void AARollaBallPlayer::OnComponentHit(UPrimitiveComponent* HitComponent, AActor
 }
 
 // Called to bind functionality to input
-void AARollaBallPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ARollaBallPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	// Custom Input Axis Bindings
-	InputComponent->BindAxis("MoveForward", this, &AARollaBallPlayer::MoveForward);
-	InputComponent->BindAxis("MoveRight", this, &AARollaBallPlayer::MoveRight);
+	InputComponent->BindAxis("MoveForward", this, &ARollaBallPlayer::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &ARollaBallPlayer::MoveRight);
 
 	// Custom Input Action Bindings
-	InputComponent->BindAction("Jump", IE_Pressed, this, &AARollaBallPlayer::Jump);
+	InputComponent->BindAction("Jump", IE_Pressed, this, &ARollaBallPlayer::Jump);
 }

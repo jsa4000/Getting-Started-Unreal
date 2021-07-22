@@ -11,13 +11,13 @@ class UCameraComponent;
 class USpringArmComponent;
 
 UCLASS()
-class ROLLABALLGAME_API AARollaBallPlayer : public APawn
+class ROLLABALLGAME_API ARollaBallPlayer : public APawn
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
-	AARollaBallPlayer();
+	ARollaBallPlayer();
 
 protected:
 	// Called when the game starts or when spawned
