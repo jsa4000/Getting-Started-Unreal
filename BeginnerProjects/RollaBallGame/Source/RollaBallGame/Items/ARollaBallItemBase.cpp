@@ -36,14 +36,16 @@ void ARollaBallItemBase::OnComponentBeginOverlap(UPrimitiveComponent* Overlapped
 {
 	if (Cast<ARollaBallPlayer>(OtherActor))
 	{
-		GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,"Item Collected");
+		//GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,"Item Overlapped");
 		Collect();
 	}
 }
 
 void ARollaBallItemBase::Collect_Implementation()
 {
-	
+	GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,"Item Collected");
+
+	// TODO: Implement the Collect Functionality
 }
 
 

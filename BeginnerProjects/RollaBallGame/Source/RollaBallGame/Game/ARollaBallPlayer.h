@@ -25,13 +25,13 @@ protected:
 
 	// COMPONENTS //
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Player")
-	UStaticMeshComponent* Mesh;
+	TObjectPtr<UStaticMeshComponent> Mesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
-	USpringArmComponent* SpringArm;
+	TObjectPtr<USpringArmComponent> SpringArm;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
-	UCameraComponent* Camera;
+	TObjectPtr<UCameraComponent> Camera;
 
 	// VARIABLES //
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Roll a Ball", meta = (ClampMin=0.0,ClampMax=99999.0))

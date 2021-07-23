@@ -21,7 +21,7 @@ protected:
 
 	// COMPONENTS //
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Player")
-	UStaticMeshComponent* Mesh;
+	TObjectPtr<UStaticMeshComponent> Mesh;
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Collect();

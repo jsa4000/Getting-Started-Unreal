@@ -26,6 +26,7 @@ ARollaBallPlayer::ARollaBallPlayer()
 	Mesh->SetSimulatePhysics(true);
 	// Enable Simulation Generates Hit Events
 	Mesh->SetNotifyRigidBodyCollision(true);
+	Mesh->SetCollisionProfileName(TEXT("PhysicsActor"));
 
 	// Disable Parent rotation inheritance
 	SpringArm->bInheritPitch = false;
