@@ -482,6 +482,10 @@ Configure mouse and buttons to easily navigate into the viewport
 
 ![unreal-viewport-navigation-config.png](images/unreal-viewport-navigation-config.png)
 
+Configure Duplicate Shortcut to match with default standard in other Software
+
+![unreal-duplicate-shortcut](images/unreal-duplicate-shortcut.png)
+
 Turn Off `Realtime` within from the `Viewport options` menu.
 
 ![unreal-disable-realtime](images/unreal-disable-realtime.png)

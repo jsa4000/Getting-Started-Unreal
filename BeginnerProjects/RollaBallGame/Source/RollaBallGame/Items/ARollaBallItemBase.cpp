@@ -3,6 +3,7 @@
 
 #include "ARollaBallItemBase.h"
 #include "RollaBallGame/Game/ARollaBallPlayer.h"
+#include "RollaBallGame/Game/RollaBallGameModeBase.h"
 
 // Sets default values
 ARollaBallItemBase::ARollaBallItemBase()
@@ -43,9 +44,16 @@ void ARollaBallItemBase::OnComponentBeginOverlap(UPrimitiveComponent* Overlapped
 
 void ARollaBallItemBase::Collect_Implementation()
 {
-	GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,"Item Collected");
+	//GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,"Item Collected");
 
-	// TODO: Implement the Collect Functionality
+	// Get The GameMode configured from the World
+	TObjectPtr<ARollaBallGameModeBase> GameMode = Cast<ARollaBallGameModeBase>(GetWorld()->GetAuthGameMode());
+
+	if (GameMode)
+	{
+		// Update Items Collected in the GameMode
+		GameMode->ItemCollected();
+	}
 }
 
 

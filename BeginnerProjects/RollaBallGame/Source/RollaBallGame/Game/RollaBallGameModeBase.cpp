@@ -13,15 +13,36 @@ void ARollaBallGameModeBase::BeginPlay()
 	TArray<AActor*> Items;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(),ARollaBallItemBase::StaticClass(), Items);
 	ItemsInLevel = Items.Num();
+
+	if (GameWidgetClass)
+	{
+		GameWidget = Cast<URollaBallWidget>(CreateWidget(GetWorld(), GameWidgetClass));
+			
+		if (GameWidget)
+		{
+			GameWidget->AddToViewport();
+			UpdateItemText();
+		}
+	}
 }
 
 void ARollaBallGameModeBase::UpdateItemText()
 {
-}
+	if (GameWidget)
+	{
+		//GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Orange,
+		//	FString::Printf(TEXT("UpdateItemText: %d / %d"),ItemsCollected,ItemsInLevel));
+
+		// Set the the Widget Text Component
+		GameWidget->SetItemsText(ItemsCollected, ItemsInLevel);
+	}
+ }
 
 
 void ARollaBallGameModeBase::ItemCollected()
 {
 	// Increase the Items Collected Counter
 	ItemsCollected++;
+	// Force to Update the Widget
+	UpdateItemText();
 }
