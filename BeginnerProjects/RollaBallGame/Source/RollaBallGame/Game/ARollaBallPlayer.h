@@ -7,8 +7,10 @@
 #include "GameFramework/Pawn.h"
 #include "ARollaBallPlayer.generated.h"
 
-class UCameraComponent;
-class USpringArmComponent;
+// References to Class Names instead using includes (.h files)
+// (Following Class Names are included during their declaration)
+// class UCameraComponent;
+// class USpringArmComponent; 
 
 UCLASS()
 class ROLLABALLGAME_API ARollaBallPlayer : public APawn
@@ -28,10 +30,10 @@ protected:
 	TObjectPtr<UStaticMeshComponent> Mesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
-	TObjectPtr<USpringArmComponent> SpringArm;
+	TObjectPtr<class USpringArmComponent> SpringArm;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Camera")
-	TObjectPtr<UCameraComponent> Camera;
+	TObjectPtr<class UCameraComponent> Camera;
 
 	// VARIABLES //
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Roll a Ball", meta = (ClampMin=0.0,ClampMax=99999.0))
