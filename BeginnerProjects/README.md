@@ -480,7 +480,8 @@ Configure mouse and buttons to easily navigate into the viewport
 
 `Editor Preferences -> Level Editor -> Viewport -> Controls`
 
-![unreal-viewport-navigation-config.png](images/unreal-viewport-navigation-config.png)
+![unreal-viewport-navigation-config](images/unreal-viewport-navigation-config.png)
+![unreal-scroll-viewport-default](images/unreal-scroll-viewport-default.png)
 
 Configure Duplicate Shortcut to match with default standard in other Software
 
