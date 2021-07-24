@@ -1,6 +1,5 @@
 # Getting Started With Unreal
 
-
 ## Git
 
 Download and install the Git command line extension. Once downloaded and installed, set up `Git LFS` for your user account by running:
@@ -32,3 +31,27 @@ git add file.psd
 git commit -m "Add design file"
 git push origin main
 ```
+
+### Fixing files that should have been pointers in LFS but weren't
+
+There is a relatively easy fix for a message from git lfs like:
+
+`Encountered n file(s) that should have been pointers, but weren't`
+
+If the files in question are already on a remote and you don't want to rewrite history, run:
+
+```bash
+git lfs migrate import --no-rewrite path/to/file.ext
+```
+
+This will create a new commit moving `path/to/file.ext` to LFS.
+
+If you do need to rewrite history, see the documentation for migrating data to LFS.
+
+To check whether this worked, run:
+
+```bash
+git lfs ls-files | grep path/to/file.ext
+```
+
+You should see an entry for `path/to/file.ext` in the resulting output.
